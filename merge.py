@@ -1,14 +1,14 @@
 import pandas as pd
 from rdkit import Chem
 
-# Process: Merge Glide and vina results for finding common molecules.
+# Process: Merge glide and vina results for finding common molecules.
 # Configuration
 vina_df = pd.read_csv("sort_1443_vinascore_top10.csv")
 glide_df = pd.read_csv("sort_1443_glidescore_top10.csv")
 
 def standarize_smiles(smiles):
     # Convert SMILES to standardized canonical form
-    #!! Important. vina results contain no stereochemistry while glide results contain.
+    #!!Important. Vina results contain no stereochemistry while glide results contain.
     mol = Chem.MolFromSmiles(smiles)
     standardized_smiles = Chem.MolToSmiles(mol, isomericSmiles=False, canonical=True)
     return standardized_smiles
